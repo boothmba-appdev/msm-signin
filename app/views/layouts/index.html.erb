@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MSM SIGNIN</title>
+  </head>
+
+  <body>
+
+    <nav>
+      <ul>
+          <% if @current_user %>
+          <li>
+            <a href="/user_sign_out">
+              Sign out
+            </a>
+          </li>
+          <li>
+            <a href="/bookmarks">
+              My bookmarks
+            </a>
+          </li>
+          <% else %>
+          <li>
+            <a href="/user_sign_in">
+              Sign in
+            </a>
+          </li>
+          <li>
+            <a href="/user_sign_up">
+              Sign up
+            </a>
+          </li>
+          <% end %>
+        <li>
+          <a href="/">
+            Home
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <h1>Homepage</h1>
+
+<ul>
+  <li>
+    <a href="/directors">
+      All directors
+    </a>
+    <ul>
+      <li>
+        <a href="/directors/youngest">
+          Youngest director
+        </a>
+      </li>
+      <li>
+        <a href="/directors/eldest">
+          Eldest director
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="/movies">
+      All movies
+    </a>
+  </li>
+  <li>
+    <a href="/actors">
+      All actors
+    </a>
+  </li>
+</ul>
+
+    <footer>
+      <small>
+        This product uses the TMDb API but is not endorsed or certified by TMDb.
+      </small>
+    </footer>
+  </body>
+</html>

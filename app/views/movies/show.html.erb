@@ -21,12 +21,16 @@
     <hr>
     <% if session.fetch(:user_id) %>
       <% if Bookmark.where(user_id: session.fetch(:user_id)).exists?(movie_id: @the_movie.id) %>
-          <a href="/delete_bookmark/<%= Bookmark.where(user_id: session.fetch(:user_id)).where(movie_id: @the_movie.id).ids %>">
+          <a href="/delete_bookmark/<%= Bookmark.where(user_id: session.fetch(:user_id)).where(movie_id: @the_movie.id).at(0).id %>">
             Un-bookmark!
           </a>
       <% else %>
       <form action="/insert_bookmark" method="post">
-        <button value="<%= @the_movie.id %>">
+      <select name="query_movie_id">
+        <option value="<%= @the_movie.id%>">
+        </option>
+        </select>
+        <button>
             <p>Bookmark this movie!</p>
         </button>
       </form>

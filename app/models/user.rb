@@ -15,4 +15,9 @@ class User < ApplicationRecord
   validates :email, :uniqueness => { :case_sensitive => false }
   validates :email, :presence => true
   has_secure_password
+
+  def user_name
+    return self.first_name.capitalize+" "+self.last_name.capitalize
+  end
+  
 end

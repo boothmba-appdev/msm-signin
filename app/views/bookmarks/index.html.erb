@@ -1,47 +1,32 @@
 <div>
-  <div>
-    <h1>
-      List of all bookmarks
-    </h1>
-  </div>
+  <h1>
+    <%= session.fetch(:user_name).upcase %>'s bookmarks
+  </h1>
 </div>
 
-<hr>
-
 <div>
-  <div>
-    <h2>
-      Add a new bookmark
-    </h2>
-
     <form action="/insert_bookmark" method="post">
-      <div>
-        <label for="user_id_box">
-          User
-        </label>
-
-        <input type="text" id="user_id_box" name="query_user_id">
-      </div>
-
-      <div>
-        <label for="movie_id_box">
-          Movie
-        </label>
-
-        <input type="text" id="movie_id_box" name="query_movie_id">
-      </div>
-
+    <select name="query_movie_id" id="movie_id_box">
+      <% Movie.all.each do |a_movie| %>
+        <% if Bookmark.exists?(movie_id: a_movie.id) %>
+        <% else %>
+          <option value="<%= a_movie.id%>">
+            <%= a_movie.title%>
+          </option>
+        <% end %>
+      <% end %>
+    </select>
       <button>
-        Create bookmark
+        Bookmark this movie!
       </button>
     </form>
-  </div>
 </div>
 
 <hr>
+
 <div>
   <div>
-    <table>
+    <table class="table" border="1">
       <tr>
         <th>
           ID
@@ -74,11 +59,11 @@
         </td>
 
         <td>
-          <%= a_bookmark.user_id %>
+          <%= a_bookmark.user.user_name %>
         </td>
 
         <td>
-          <%= a_bookmark.movie_id %>
+          <%= a_bookmark.movie.title %>
         </td>
 
         <td>
@@ -91,6 +76,11 @@
         <td>
           <a href="/bookmarks/<%= a_bookmark.id %>">
             Show details
+          </a>
+        </td>
+        <td>
+          <a href="/delete_bookmark/<%= a_bookmark.id %>">
+            Un-bookmark
           </a>
         </td>
       </tr>

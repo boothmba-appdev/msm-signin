@@ -18,6 +18,15 @@
       </div>
     </div>
 
+    <hr>
+    <% if session.fetch(:user_id) %>
+
+    <button>
+        Bookmark this movie!
+    </button>
+
+    <% end %>
+
     <dl>
       <dt>
         Title

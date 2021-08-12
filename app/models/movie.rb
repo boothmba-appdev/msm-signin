@@ -16,7 +16,7 @@ class Movie < ApplicationRecord
   validates(:title, { :presence => true })
   validates(:director_id, { :presence => true })
 
-  has_many(:characters, { :class_name => "Character", :foreign_key => "movie_id", :dependent => :destroy })
-  belongs_to(:director, { :required => true, :class_name => "Director", :foreign_key => "director_id", :counter_cache => :filmography_count })
+  has_many(:characters, { :class_name => "Character", :foreign_key => "movie_id"})
+  belongs_to(:director, { :class_name => "Director", :foreign_key => "director_id"})
   has_many(:cast, { :through => :roles, :source => :actor })
 end

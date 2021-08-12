@@ -18,6 +18,7 @@ class UserAuthenticationController < ApplicationController
         redirect_to("/user_sign_in", { :alert => "Incorrect password." })
       else
         session[:user_id] = user.id
+        session[:user_name] = user.first_name+" "+user.last_name
       
         redirect_to("/", { :notice => "Signed in successfully." })
       end
@@ -48,6 +49,7 @@ class UserAuthenticationController < ApplicationController
 
     if save_status == true
       session[:user_id] = @user.id
+      session[:user_name] = @user.first_name+" "+@user.last_name
    
       redirect_to("/", { :notice => "User account created successfully."})
     else
